@@ -19,7 +19,7 @@ module.exports = () => {
       path: path.resolve(__dirname, 'dist'),
     },
     plugins: [
-      new HtmlWebpackPlugin({
+      new HtmlWebpackPlugin({ // Generates HTML files and necessary scripts.
         template: './src/index.html',
         filename: 'index.html',
         chunks: ['main'], // 'Chunks' controls wich JS bundles are included in the HTML file. For more modularity and performance.
@@ -29,7 +29,7 @@ module.exports = () => {
         filename: 'install.html',
         chunks: ['install'],
       }),
-      new WebpackPwaManifest({
+      new WebpackPwaManifest({ // Generates 'manifest.json' file.
         name: 'JATE',
         short_name: 'JATE',
         description: 'Just Another Text Editor',
@@ -45,7 +45,7 @@ module.exports = () => {
           },
         ],
       }),
-      new InjectManifest({
+      new InjectManifest({ // Generates service worker from 'src-sw.js'
         swSrc: './src-sw.js',
         swDest: 'service-worker.js',
       }),
