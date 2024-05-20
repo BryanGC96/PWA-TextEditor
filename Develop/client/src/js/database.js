@@ -12,6 +12,7 @@ const initdb = async () =>
     },
   });
 
+  ///////////////////////////////////////////////////////////////////////////////////
 // TODO: Add logic to a method that accepts some content and adds it to the database
 // Adds content to the database.
 export const putDb = async (content) => {
@@ -43,5 +44,6 @@ export const getDb = async () => {
     return null;
   }
 };
+//////////////////////////////////////////////////////////////////////////////////////////
 
 initdb();

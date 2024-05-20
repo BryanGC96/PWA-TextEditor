@@ -19,23 +19,19 @@ module.exports = () => {
       path: path.resolve(__dirname, 'dist'),
     },
     plugins: [
-      new HtmlWebpackPlugin({ // Generates HTML files and necessary scripts.
-        template: './src/index.html',
-        filename: 'index.html',
-        chunks: ['main'], // 'Chunks' controls wich JS bundles are included in the HTML file. For more modularity and performance.
-      }),
       new HtmlWebpackPlugin({
-        template: './src/install.html',
-        filename: 'install.html',
-        chunks: ['install'],
+        template: './index.html',
+        filename: 'index.html',
+        inject: 'body',
       }),
+
       new WebpackPwaManifest({ // Generates 'manifest.json' file.
         name: 'JATE',
         short_name: 'JATE',
         description: 'Just Another Text Editor',
         background_color: '#ffffff',
         theme_color: '#31a9e1',
-        start_url: './index.html',
+        start_url: '/',
         display: 'standalone',
         icons: [
           {
