@@ -119,9 +119,10 @@ module.exports = (env, argv) => {
       }),
 
       new WebpackPwaManifest({
+        id: '/',
         name: 'JATE',
         short_name: 'JATE',
-        description: 'Just Another Text Editor',
+        description: 'Just Another Text Editor takes notes with JavaScript syntax highlighting!',
         background_color: '#ffffff',
         theme_color: '#31a9e1',
         start_url: '/',
