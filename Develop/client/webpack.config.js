@@ -17,10 +17,11 @@ module.exports = () => {
     output: {
       filename: '[name].bundle.js',
       path: path.resolve(__dirname, 'dist'),
+      publicPath: '/',
     },
     plugins: [
       new HtmlWebpackPlugin({
-        template: './index.html',
+        template: '../client/index.html',
         filename: 'index.html',
         inject: 'body',
       }),
@@ -42,7 +43,7 @@ module.exports = () => {
         ],
       }),
       new InjectManifest({ // Generates service worker from 'src-sw.js'
-        swSrc: './src-sw.js',
+        swSrc: './src-sw',
         swDest: 'service-worker.js',
       }),
     ],
@@ -52,6 +53,10 @@ module.exports = () => {
         {
           test: /\.css$/i,
           use: ['style-loader', 'css-loader'],
+        },
+        {
+          test: /\.(png|svg|jpg|jpeg|gif)$/i,
+          type: 'asset/resource',
         },
         {
           test: /\.m?js$/,
