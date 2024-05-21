@@ -83,11 +83,12 @@ const path = require('path');
 const { InjectManifest } = require('workbox-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
+
 module.exports = (env, argv) => {
   const isProduction = argv.mode === 'production';
 
   return {
-    mode: isProduction ? 'production' : 'development',
+    mode: 'development',
     entry: {
       main: './src/js/index.js',
       install: './src/js/install.js'
@@ -97,35 +98,36 @@ module.exports = (env, argv) => {
       path: path.resolve(__dirname, 'dist'),
       publicPath: '/',
     },
-    devServer: {
-      static: {
-        directory: path.join(__dirname, 'dist'),
-      },
-      compress: true,
-      port: 8080,
-      hot: true,
-      open: true,
-      devMiddleware: {
-        writeToDisk: true, // Ensures files are written to disk
-      },
-    },
+    // devServer: {
+    //   static: {
+    //     directory: path.join(__dirname, 'dist'),
+    //   },
+    //   compress: true,
+    //   port: 8080,
+    //   hot: true,
+    //   open: true,
+    //   devMiddleware: {
+    //     writeToDisk: true, // Ensures files are written to disk
+    //   },
+    // },
     plugins: [
-      isProduction && new CleanWebpackPlugin(), // Only clean during production build
 
       new HtmlWebpackPlugin({
-        template: path.resolve(__dirname, '../client/index.html'),
+        template: "./index.html",
         filename: 'index.html',
-        inject: 'body',
+        // inject: 'body',
       }),
 
       new WebpackPwaManifest({
         id: '/',
+        inject: true ,
         name: 'JATE',
         short_name: 'JATE',
         description: 'Just Another Text Editor takes notes with JavaScript syntax highlighting!',
         background_color: '#ffffff',
         theme_color: '#31a9e1',
         start_url: '/',
+        publicPath: '/',
         display: 'standalone',
         icons: [
           {
@@ -141,8 +143,8 @@ module.exports = (env, argv) => {
         swSrc: './src-sw.js',
         swDest: 'service-worker.js',
       }),
-    ].filter(Boolean),
-
+    ]//.filter(Boolean)
+,
     module: {
       rules: [
         {
